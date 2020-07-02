@@ -1,0 +1,42 @@
+{
+    "name": "lomayko/turbosms",
+    "description": "TurboSMS for Laravel 5+",
+    "keywords": [
+        "lomayko",
+        "turbosms",
+        "sms",
+        "laravel-sms"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lomayko",
+            "email": "lomayko@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.5",
+        "laravel/framework": ">=5.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lomayko\\TurboSMS\\Facades\\": "src/Facades",
+            "Lomayko\\TurboSMS\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lomayko\\TurboSMS\\TurboSMSServiceProvider"
+            ],
+            "aliases": {
+                "TurboSMS": "Lomayko\\TurboSMS\\Facades\\TurboSMS"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
