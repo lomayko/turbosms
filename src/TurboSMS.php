@@ -149,7 +149,7 @@ class TurboSMS implements TurboSMSInterface
             ];
         }
 
-        $response = $this->client->request('POST', $this->$url, [
+        $response = $this->client->request('POST', $url, [
             'headers'        => [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
@@ -169,7 +169,7 @@ class TurboSMS implements TurboSMSInterface
 //            ])->post($url, $body);
 //        $answer = $response->json();
 
-        if (isset($response['error'])) { //$answer->failed()
+        if (isset($answer['error'])) { //$answer->failed()
             return [
                 'success' => false,
                 'result' => null,
