@@ -173,15 +173,15 @@ dd($status);
 ```
 
 #### Отправка сообщения(ий). Значения отправителей (телефоны) очищаются от лишних символов
-`TurboSMS::sendMessages($array_or_one_phone, $text, enum['sms' || null, 'viber', 'both'])`
+`TurboSMS::sendMessages($array_or_one_phone, $text, enum[TurboSMS::SENT_TYPE_SMS || null, TurboSMS::SENT_TYPE_VIBER, TurboSMS::SENT_TYPE_HYBRID])`
 
 ```php
 $sended = TurboSMS::sendMessages('+38(066) 777-88-99', 'Отправляем SMS');
-$sended = TurboSMS::sendMessages('+38(066) 777-88-99', 'Отправляем SMS', 'sms');
+$sended = TurboSMS::sendMessages('+38(066) 777-88-99', 'Отправляем SMS', TurboSMS::SENT_TYPE_SMS);
 
 // or
-$sended = TurboSMS::sendMessages('+38(066) 777-88-99', 'Отправляем Viber', 'viber');
-$sended = TurboSMS::sendMessages('+38(066) 777-88-99', 'Гибридная отправка. Сразу в Viber, при ошибке - SMS', 'both');
+$sended = TurboSMS::sendMessages('+38(066) 777-88-99', 'Отправляем Viber', TurboSMS::SENT_TYPE_VIBER);
+$sended = TurboSMS::sendMessages('+38(066) 777-88-99', 'Гибридная отправка. Сразу в Viber, при ошибке - SMS', TurboSMS::SENT_TYPE_HYBRID);
 ```
 
 #### Полностью кастомная отправка. Позволяет самому сформировать URL и тело запроса.
@@ -206,7 +206,7 @@ use TurboSMS;
 
 //простая отправка
 $sms = TurboSMS::sendMessages('380667778899', 'TurboSMS приветствует Вас!');
-$viber = TurboSMS::sendMessages('380667778899', 'TurboSMS приветствует Вас!', 'viber');
+$viber = TurboSMS::sendMessages('380667778899', 'TurboSMS приветствует Вас!', TurboSMS::SENT_TYPE_VIBER);
 
 
 //отправка с параметрами
@@ -232,7 +232,7 @@ TurboSMS::setTransactional(1);
 TurboSMS::setStartTime('lalala'); //про игнорируется
 TurboSMS::setStartTime('2020-10-10 08:22'); //установит дату и время отправки, если она больше текущей
 TurboSMS::setViberText('Этот текст будет получен только в Viber');
-$sended = TurboSMS::sendMessages($ph, 'Привет в SMS. В Вайбере не отправится', 'both');
+$sended = TurboSMS::sendMessages($ph, 'Привет в SMS. В Вайбере не отправится', TurboSMS::SENT_TYPE_HYBRID);
 
 ```
 
