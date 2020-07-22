@@ -11,6 +11,10 @@ class TurboSMS implements TurboSMSInterface
 {
     use ViberAddition, StartTimeAddition;
 
+    public const SENT_TYPE_SMS = 'sms';
+    public const SENT_TYPE_VIBER = 'viber';
+    public const SENT_TYPE_HYBRID = 'both';
+
     /** @var HttpClient */
     protected $client;
     protected $api;
@@ -108,15 +112,15 @@ class TurboSMS implements TurboSMSInterface
         ];
 
         //SMS
-        if ($type == 'sms' || ! $type) {
+        if ($type == self::SENT_TYPE_SMS || !$type) {
             $body = $this->bodySMS($body, $text);
         }
         //VIBER
-        if ($type == 'viber') {
+        if ($type == self::SENT_TYPE_VIBER) {
             $body = $this->bodyViber($body, $text);
         }
         //Гибридная доставка
-        if ($type == 'both') {
+        if ($type == self::SENT_TYPE_HYBRID) {
             $body = $this->bodySMS($body, $text);
             $body = $this->bodyViber($body, $text);
         }
@@ -126,9 +130,7 @@ class TurboSMS implements TurboSMSInterface
             $body['start_time'] = $this->startTime;
         }
 
-        $answers = $this->getResponse($url, $body);
-
-        return $answers;
+        return $this->getResponse($url, $body);
     }
 
     /**
